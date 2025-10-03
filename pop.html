@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popeyes India — Official Demo</title>
+  <meta name="description" content="Popeyes India website demo with full menu, promo video, specials, and responsive design.">
+
+  <style>
+    :root {
+      --accent: #ff7a00;
+      --accent-2: #ffb36b;
+      --bg: #fff8f3;
+      --muted: #6b6b6b;
+      --card: #ffffffcc;
+      --radius: 18px;
+      --shadow: 0 8px 30px rgba(19, 19, 19, 0.08);
+      --ease: cubic-bezier(.2, .9, .3, 1);
+      --max-width: 1400px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, sans-serif;
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+      background: linear-gradient(135deg, #ff7a00, #ffb36b);
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    header nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px;
+      flex: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 60px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #ff7a00, #d69a61);
+      color: white;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      margin: 12px 0;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .hero .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-grid;
+      place-items: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 10px 30px rgba(255, 122, 0, 0.18);
+      transition: transform 220ms var(--ease);
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .hero .chicken-box {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      transition: transform 550ms var(--ease);
+    }
+
+    .hero:hover .chicken-box {
+      transform: scale(1.03) rotate(-1deg);
+    }
+
+    .hero .chicken-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Menu Section */
+    .menu-section {
+      margin-bottom: 60px;
+    }
+
+    .menu-section h2 {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .menu-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+      opacity: 0;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 26px 60px rgba(19, 19, 19, 0.14);
+    }
+
+    .menu-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .menu-card h3 {
+      margin: 8px 0;
+    }
+
+    .menu-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+.special-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  object-fit: cover;
+  display: block;
+  max-height: 200px; /* Optional: prevents very tall images */
+}
+
+    /* Animations */
+    @keyframes fadeIn {
+      0%, 50%, 100% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      25%, 75% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rotateIn {
+      0%, 50%, 100% {
+        opacity: 0;
+        transform: rotate(-30deg) scale(0.8);
+      }
+
+      25%, 75% {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+      }
+    }
+
+    @keyframes slideIn {
+      0%, 50%, 100% {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      25%, 75% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .fade-in {
+      animation-name: fadeIn;
+      animation-delay: 0s;
+    }
+
+    .rotate-in {
+      animation-name: rotateIn;
+      animation-delay: 0.5s;
+    }
+
+    .slide-in {
+      animation-name: slideIn;
+      animation-delay: 1s;
+    }
+
+    /* Specials Section */
+    .specials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .special-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 300ms var(--ease);
+    }
+
+    .special-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 26px 60px rgba(19, 19, 19, 0.14);
+    }
+
+    .special-card h3 {
+      margin: 8px 0;
+    }
+
+    .special-card p {
+      color: var(--muted);
+    }
+
+    /* Video Section */
+    .video-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 60px;
+      box-shadow: var(--shadow);
+    }
+
+    .video-wrap iframe {
+      width: 100%;
+      height: 400px;
+      display: block;
+      border: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero .chicken-box {
+        margin: 0 auto;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .menu-grid,
+      .specials {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Popeyes India</h1>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#specials">Specials</a>
+    <a href="#video">Promo</a>
+    <a href="#footer">Contact</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div>
+      <h2>Welcome to Popeyes India <span class="sizzle">🍗</span></h2>
+      <p>Authentic Louisiana-style fried chicken & sides. Explore our menu, promos, and online offers.</p>
+      <div class="buttons">
+        <button class="btn" onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})">Watch Promo</button>
+        <button class="btn ghost" onclick="alert('Order Now clicked!')">Order Now</button>
+      </div>
+    </div>
+    <div class="chicken-box">
+      <img src="https://cdn.sanity.io/images/czqk28jt/prod_plk_us/4a944f67574ee70589c21f06c9de036d8e4605cb-1800x900.png?w=1158&q=70&fit=max&auto=format" alt="Fried chicken box">
+    </div>
+  </section>
+
+  <!-- Menu (Only One Section Now) -->
+  <section class="menu-section" id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-card fade-in">
+        <img src="https://cdn.sanity.io/images/czqk28jt/prod_plk_us/65de26f680a1094e1883c3a6b085c02b7f630228-870x570.png?q=70&auto=format" alt="Chicken">
+        <h3>Spicy Chicken</h3>
+        <p>Our signature Louisiana-style fried chicken with a perfect blend of spices.</p>
+      </div>
+      <div class="menu-card rotate-in">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYjnk2L8ryL6ISldOkly5dOk_RVvbVsOdhZw&s" alt="Burger">
+        <h3>Chicken Burger</h3>
+        <p>Crispy chicken fillet with fresh lettuce and Popeyes sauce on a toasted bun.</p>
+      </div>
+      <div class="menu-card slide-in">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrD9EArm3u94OidUZKoytq0bgO2Rs3TBDp0ZOXV_wMNE0EM8qoi-UDixjTp1g0XqoNOI0&usqp=CAU" alt="Sides">
+        <h3>Signature Sides</h3>
+        <p>Mashed potatoes, Cajun fries, coleslaw, and biscuits to complete your meal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specials -->
+  <section class="specials" id="specials">
+    <div class="special-card">
+       <img src="https://connectingjamaica.com/wp-content/uploads/2025/03/Popeyes-Chicken-3-1.jpg" alt="8pc">
+      <h3>Family Combo</h3>
+      <p>8 pcs chicken + 4 sides + 4 biscuits. Perfect for the whole family!</p>
+    </div>
+    <div class="special-card">
+       <img src="https://popeyes.bs/wp-content/uploads/2022/04/2pcdk.jpg" alt="2pc">
+      <h3>Lunch Deal</h3>
+      <p>2 pcs chicken + regular fries + drink at a special price.</p>
+    </div>
+    <div class="special-card">
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZKAXc9LOXIqxSzXCrUmz-9aL6xSrX6U0R9w&s" alt="week">
+      <h3>Weekend Promo</h3>
+      <p>Get 20% off on all chicken orders on weekends.</p>
+    </div>
+  </section>
+
+  <!-- Promo Video -->
+<section class="video-wrap" id="video">
+  <a href="https://youtu.be/mROjY3I2umw?si=aj4myQzt72Up1Q6T" target="_blank">
+    <img src="https://img.youtube.com/vi/mROjY3I2umw/maxresdefault.jpg" 
+         alt="Watch Popeyes Promo Video"
+         style="width:100%; max-width:700px; border-radius:18px; display:block; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+  </a> <p style="text-align:center; margin-top:12px; font-size:1rem; color:#444;">
+    👆Click the above image to see the promo in Youtube🍗
+  </p>
+</section>
+
+
+
+</main>
+
+<footer id="footer">
+  <p>&copy; 2025 Popeyes India. All rights reserved. <a href="mailto:contact@popeyes.in">Contact us: 7845638778 | popeyes@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
